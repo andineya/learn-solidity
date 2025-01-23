@@ -10,7 +10,14 @@ contract SimpleStorage {
     // bool isFemale = true;
     // address myAddy; // wallet address
 
-    uint256 public myHeight;
+    uint256 myHeight;
+
+    struct Student {
+        string name;
+        uint256 height;
+    }
+
+    Student[] public listOfStudents;
 
     function store(uint256 _myHeight) public {
         myHeight = _myHeight;
@@ -19,5 +26,9 @@ contract SimpleStorage {
 
     function retrieve() public view returns(uint256) {
         return myHeight;
+    }
+
+    function addNewStudent(string memory _name, uint256 _height) public {
+        listOfStudents.push(Student(_name, _height));
     }
 }
