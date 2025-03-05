@@ -1,4 +1,4 @@
-pragma solidity ^0.8.26; // memberi tahu compiler kalo kita pake versi 0.8.26 sampai yang lebih baru tapi kurang dari 0.9.0
+pragma solidity ^0.8.26; // to tell the compiler that we use between 0.8.26 and 0.9.0
 
 contract myContract {
     string public myString = "Hello, World!";
@@ -6,10 +6,10 @@ contract myContract {
 
 contract Marketplace {
     address public seller;
-    uint balance; // unsigned int 256 bit [default]  (positif saja)
-    int32 price; // int 32 bits (positif dan negatif)
+    uint balance; // unsigned int 256 bit [default]  (positive only)
+    int32 price; // int 32 bits (positive and negative)
     
-    modifier onlySeller() { // fungsi yang bisa ngubah behavior suatu fungsi lain. cara kerjanya dia ngecek kondisi dulu sblm diexecute
+    modifier onlySeller() { // a function that can change other's function behavior. it check the condition first before making an execution
         require(
             msg.sender == seller,
             "Only seller can sell items."
@@ -17,14 +17,14 @@ contract Marketplace {
             _;
     }
 
-event purchasedItem(address buyer, uint price); // action yang ada di dalam contract
+event purchasedItem(address buyer, uint price);
     function buy() public payable {
         emit purchasedItem(msg.sender, msg.value);
     }
 }
 
 contract Bank{
-    address payable seller; // variabel dengan tipe data address 20 bits yang menyimpan address wallet dan 'payable' yang bisa menerima ether
+    address payable seller; // an wallet-address typed variabel. its lenght is 20 bits. represents an addy and 'payable' properties that can recieve ether
     address payable buyer;
 
     // function transfer(address buyer, uint price) {
